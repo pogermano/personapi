@@ -4,6 +4,7 @@ package com.w3g.personapi.controller;
 import com.w3g.personapi.dto.request.PersonDTO;
 import com.w3g.personapi.dto.response.MessageResponseDTO;
 import com.w3g.personapi.entity.Person;
+import com.w3g.personapi.exception.PersonNotFoundException;
 import com.w3g.personapi.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,11 @@ public class PersonController {
     @ResponseStatus(HttpStatus.OK)
     public List<PersonDTO> getAll(){
         return personService.listAll();
+    }
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
+        return personService.findById(id);
     }
 
 }
