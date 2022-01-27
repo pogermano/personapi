@@ -37,16 +37,15 @@ public class PersonService {
     }
 
     public PersonDTO findById(Long id)  throws PersonNotFoundException {
-        Person person = verifyIfExists(id);
         // versao normal, sem simplificar
        // Optional<Person> person = personRepository.findById(id);
        // if(person.isEmpty()){
        //     throw new PersonNotFoundException(id);
       //  }
       //  PersonDTO personToReturn = personMapper.toDTO(person.get());
+
+        Person person = verifyIfExists(id);
         return personMapper.toDTO(person);
-
-
     }
 
      public void deleteById(Long id)  throws PersonNotFoundException {
