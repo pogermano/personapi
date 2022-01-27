@@ -3,7 +3,6 @@ package com.w3g.personapi.controller;
 
 import com.w3g.personapi.dto.request.PersonDTO;
 import com.w3g.personapi.dto.response.MessageResponseDTO;
-import com.w3g.personapi.entity.Person;
 import com.w3g.personapi.exception.PersonNotFoundException;
 import com.w3g.personapi.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +45,12 @@ public class PersonController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id) throws PersonNotFoundException {
         personService.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid PersonDTO personDTO) throws PersonNotFoundException {
+       return personService.update(id, personDTO);
     }
 
 }
